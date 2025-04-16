@@ -18,7 +18,7 @@ import shutil
 def get_args():
     parser = ArgumentParser(description="CNN training")
 
-    parser.add_argument("--root", "-n", type=str, default='../all-data/animals', help="Root of the dataset")
+    parser.add_argument("--root", "-n", type=str, default='animals', help="Root of the dataset")
     parser.add_argument("--epochs", "-e", type=int, default=100, help="Number of epochs")
     parser.add_argument("--batch-size", "-b", type=int, default=8, help="Batch size")
     parser.add_argument("--image-size", "-i", type=int, default=224, help="Image size")
@@ -86,7 +86,7 @@ if __name__ == '__main__':
     optimizer = optim.SGD(model.parameters(), lr=1e-3, momentum=0.9)
 
     if args.checkpoint:
-        checkpoint = torch.load(args.checkpoint)
+        checkpoint = torch.load(args.checkpoint, map_location=device)
         start_epoch = checkpoint['epoch']
         model.load_state_dict(checkpoint['model'])
         optimizer.load_state_dict(checkpoint['optimizer'])

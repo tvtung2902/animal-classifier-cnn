@@ -9,7 +9,7 @@ from animal_dataset import AnimalDataset
 
 def get_args():
     parser = ArgumentParser(description="CNN test")
-    parser.add_argument("--image-path", "-ip", type=str, default="test_images/img_5.png", help="Image size")
+    parser.add_argument("--image-path", "-ip", type=str, default="test_images/img_1.png", help="Image size")
     parser.add_argument("--image-size", "-is", type=int, default=224, help="Image size")
     parser.add_argument("--checkpoint", "-chkpt", type=str, default="trained_models/best_cnn.pt", help="checkpoint")
     args = parser.parse_args()
@@ -50,7 +50,7 @@ if __name__ == "__main__":
 
     model = CNN(num_classes=10).to(device)
     if args.checkpoint:
-        checkpoint = torch.load(args.checkpoint)
+        checkpoint = torch.load(args.checkpoint, map_location=device)
         model.load_state_dict(checkpoint['model'])
     else:
         print('no checkpoint found!')

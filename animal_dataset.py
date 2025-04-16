@@ -32,7 +32,7 @@ class AnimalDataset(Dataset):
     def get_categories():
         return ['butterfly', 'cat', 'chicken', 'cow', 'dog', 'elephant', 'horse', 'sheep', 'spider', 'squirrel']
 if __name__ == '__main__':
-    root = '../all-data/animals'
+    root = 'animals'
     dataset = AnimalDataset(root, train=True)
     print(dataset.__len__())
     image, label = dataset.__getitem__(0)
